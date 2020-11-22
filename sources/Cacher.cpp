@@ -3,25 +3,29 @@
 #include <Cacher.hpp>
 
 Cacher::Cacher(std::vector<Type> types) {
-    for(int t = 0; t < 3; ++t){
+    for( int t = 0; t < 3; ++t ) {
         switch (types[t]) {
             case Straight:
                 for (int j = 0; j < Num_Experiment; ++j) {
                     auto arr1 = new long double[Experiment_Size[j]];
                     long double k = 0;
                     // Warming
-                    for (int i = 0; i < Experiment_Size[j]; i += Num_Data_In_Line) {
+                    for (int i = 0;
+                         i < Experiment_Size[j];
+                         i += Num_Data_In_Line) {
                         arr1[i] = random();
                     }
                     // Experiment
                     std::chrono::system_clock::time_point start =
                             std::chrono::high_resolution_clock::now();
-                    for (int i = 0; i < Experiment_Size[j] * Num_Repeat; i += Num_Data_In_Line) {
+                    for (int i = 0;
+                         i < Experiment_Size[j] * Num_Repeat;
+                         i += Num_Data_In_Line) {
                         k += arr1[i % Experiment_Size[j]];
                     }
                     std::chrono::system_clock::time_point end =
                             std::chrono::high_resolution_clock::now();
-                    duration[Straight][j] = static_cast<long>(std::chrono::
+                    duration[Straight][j] = static_cast<long int>(std::chrono::
                             nanoseconds((end - start)/Num_Repeat).count());
                     delete[] arr1;
                 }
@@ -31,18 +35,22 @@ Cacher::Cacher(std::vector<Type> types) {
                     auto arr1 = new long double[Experiment_Size[j]];
                     long double k = 0;
                     // Warming
-                    for (int i = 0; i < Experiment_Size[j]; i += Num_Data_In_Line) {
+                    for (int i = 0;
+                         i < Experiment_Size[j];
+                         i += Num_Data_In_Line) {
                         arr1[i] = random();
                     }
                     // Experiment
                     std::chrono::system_clock::time_point start =
                             std::chrono::high_resolution_clock::now();
-                    for (int i = Experiment_Size[j] * Num_Repeat; i > 0 ; i -= Num_Data_In_Line) {
+                    for (int i = Experiment_Size[j] * Num_Repeat;
+                         i > 0 ;
+                         i -= Num_Data_In_Line) {
                         k += arr1[i % Experiment_Size[j]];
                     }
                     std::chrono::system_clock::time_point end =
                             std::chrono::high_resolution_clock::now();
-                    duration[Reverse][j] = static_cast<long>(std::chrono::
+                    duration[Reverse][j] = static_cast<long int>(std::chrono::
                     nanoseconds((end - start)/Num_Repeat).count());
                     delete[] arr1;
                 }
@@ -54,13 +62,17 @@ Cacher::Cacher(std::vector<Type> types) {
                     std::set<int> used_num;
                     int n = 0;
                     // Warming
-                    for (int i = 0; i < Experiment_Size[j]; i += Num_Data_In_Line) {
+                    for (int i = 0;
+                         i < Experiment_Size[j];
+                         i += Num_Data_In_Line) {
                         arr1[i] = random();
                     }
                     // Experiment
                     std::chrono::system_clock::time_point start =
                             std::chrono::high_resolution_clock::now();
-                    for (int i = 0; i < Experiment_Size[j] * Num_Repeat; i += Num_Data_In_Line) {
+                    for (int i = 0;
+                         i < Experiment_Size[j] * Num_Repeat;
+                         i += Num_Data_In_Line) {
                         n = random() % Experiment_Size[j];
                         while (used_num.find(n) != used_num.end()) {
                             break;
@@ -69,7 +81,7 @@ Cacher::Cacher(std::vector<Type> types) {
                     }
                     std::chrono::system_clock::time_point end =
                             std::chrono::high_resolution_clock::now();
-                    duration[Random][j] = static_cast<long>(std::chrono::
+                    duration[Random][j] = static_cast<long int>(std::chrono::
                     nanoseconds((end - start)/Num_Repeat).count());
                     delete[] arr1;
                 }

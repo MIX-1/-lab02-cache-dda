@@ -3,7 +3,7 @@
 #include <Cacher.hpp>
 #include <gtest/gtest.h>
 
-TEST(V,S){
+TEST(Cacher, Start){
     std::vector<Cacher::Type> types = {Cacher::Type::Straight,
                                        Cacher::Type::Reverse,
                                        Cacher::Type::Random};
