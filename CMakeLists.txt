@@ -43,7 +43,7 @@ target_include_directories(tests
         PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include
         )
 
-target_link_libraries(tests GTest::main lab-02-cache)
+target_link_libraries(tests GTest::gtest_main lab-02-cache)
 
 enable_testing()
 add_test(NAME unit_tests COMMAND tests)

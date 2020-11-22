@@ -3,7 +3,7 @@
 #include <Cacher.hpp>
 
 Cacher::Cacher(std::vector<Type> types) {
-    for( int t = 0; t < 3; ++t ) {
+    for (int t = 0; t < 3; ++t) {
         switch (types[t]) {
             case Straight:
                 for (int j = 0; j < Num_Experiment; ++j) {
@@ -25,7 +25,7 @@ Cacher::Cacher(std::vector<Type> types) {
                     }
                     std::chrono::system_clock::time_point end =
                             std::chrono::high_resolution_clock::now();
-                    duration[Straight][j] = static_cast<long int>(std::chrono::
+                    duration[Straight][j] = static_cast<int>(std::chrono::
                             nanoseconds((end - start)/Num_Repeat).count());
                     delete[] arr1;
                 }
@@ -44,13 +44,13 @@ Cacher::Cacher(std::vector<Type> types) {
                     std::chrono::system_clock::time_point start =
                             std::chrono::high_resolution_clock::now();
                     for (int i = Experiment_Size[j] * Num_Repeat;
-                         i > 0 ;
+                         i > 0;
                          i -= Num_Data_In_Line) {
                         k += arr1[i % Experiment_Size[j]];
                     }
                     std::chrono::system_clock::time_point end =
                             std::chrono::high_resolution_clock::now();
-                    duration[Reverse][j] = static_cast<long int>(std::chrono::
+                    duration[Reverse][j] = static_cast<int>(std::chrono::
                     nanoseconds((end - start)/Num_Repeat).count());
                     delete[] arr1;
                 }
@@ -81,7 +81,7 @@ Cacher::Cacher(std::vector<Type> types) {
                     }
                     std::chrono::system_clock::time_point end =
                             std::chrono::high_resolution_clock::now();
-                    duration[Random][j] = static_cast<long int>(std::chrono::
+                    duration[Random][j] = static_cast<int>(std::chrono::
                     nanoseconds((end - start)/Num_Repeat).count());
                     delete[] arr1;
                 }

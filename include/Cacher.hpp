@@ -1,7 +1,7 @@
 // Copyright 2020 MIX-1 <danilonil1@yandex.ru>
 
-#ifndef LAB_02_CACHE_CACHER_HPP
-#define LAB_02_CACHE_CACHER_HPP
+#ifndef INCLUDE_CACHER_HPP_
+#define INCLUDE_CACHER_HPP_
 #include <iostream>
 #include <string>
 #include <chrono>
@@ -36,8 +36,8 @@ class Cacher {
   friend std::ostream& operator<<(std::ostream&, const Cacher&);
 
  private:
-  long int duration[Num_Investigation][Num_Experiment];
+  int duration[Num_Investigation][Num_Experiment];
 };
 
-#endif //LAB_02_CACHE_CACHER_HPP
+#endif // INCLUDE_CACHER_HPP_
 
