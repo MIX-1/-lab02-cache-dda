@@ -19,7 +19,9 @@ const int Experiment_Size[5] = {8192, 65536, 131072, 262144, 786432};
     "4 mb",
     "12 mb"
 };
-[[maybe_unused]] const string Experiment_Type[3] = {"Straight", "Reverse", "Random"};
+[[maybe_unused]] const string Experiment_Type[3] = {"Straight",
+                                                    "Reverse",
+                                                    "Random"};
 const int Num_Investigation = 3;
 const int Num_Experiment = 5;
 const int Num_Repeat = 1000;

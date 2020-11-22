@@ -86,8 +86,6 @@ Cacher::Cacher(std::vector<Type> types) {
                     delete[] arr1;
                 }
                 break;
-            default:
-                throw std::runtime_error {"incorrect data in constructor"};
         }
     }
 }
