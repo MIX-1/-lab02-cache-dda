@@ -7,39 +7,36 @@
 #include <chrono>
 #include <vector>
 #include <set>
+#include <cmath>
+#include <sstream>
 
 using std :: cout;
 using string = std :: string;
 
-const int Experiment_Size[5] = {8192, 65536, 131072, 262144, 786432};
-[[maybe_unused]] const string Experiment_Size_Name[5] = {
-    "128 kb",
-    "1 mb",
-    "2 mb",
-    "4 mb",
-    "12 mb"
-};
-[[maybe_unused]] const string Experiment_Type[3] = {"Straight",
-                                                    "Reverse",
-                                                    "Random"};
+const int Cache_size[3] = {256, 1024, 8192};
 const int Num_Investigation = 3;
-const int Num_Experiment = 5;
 const int Num_Repeat = 1000;
+const int Num_byte_in_Long_double = 16;
+const int Num_b_in_kb = 1024;
 const int Num_Data_In_Line = 4;
+
+enum Type {Straight, Reverse, Random};
 
 class Cacher {
  public:
-  enum Type {Straight, Reverse, Random};
 
   explicit Cacher(std::vector<Type>);
 
-  Cacher() = delete;
+  void Find_Exp_Size();
 
   friend std::ostream& operator<<(std::ostream&, const Cacher&);
 
  private:
-  int duration[Num_Investigation][Num_Experiment];
+    int num_experiment = 0;
+    std::vector<std::vector<int>> duration;
+    std::vector<int> experiment_size;
+    std::vector<string> experiment_size_name;
+    string experiment_type_name[Num_Investigation];
 };
 
 #endif // INCLUDE_CACHER_HPP_
-

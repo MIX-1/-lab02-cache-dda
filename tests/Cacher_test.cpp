@@ -4,9 +4,7 @@
 #include <gtest/gtest.h>
 
 TEST(Cacher, Start){
-    std::vector<Cacher::Type> types = {Cacher::Type::Straight,
-                                       Cacher::Type::Reverse,
-                                       Cacher::Type::Random};
+    std::vector<Type> types = {Straight, Reverse, Random};
     Cacher c(types);
     cout << c;
 }
