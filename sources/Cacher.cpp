@@ -5,7 +5,7 @@
 void Cacher::Find_Exp_Size() {
     experiment_size.push_back(Cache_size[0] / 2);
     experiment_size.push_back(Cache_size[2] * 3 / 2);
-    int size = pow(2,0) * Num_b_in_kb;
+    int size = pow(2, 0) * Num_b_in_kb;
     for (int i = 1; size < Cache_size[2]; ++i){
         experiment_size.insert(experiment_size.begin()+i, size);
         size = pow(2, i) * Num_b_in_kb;
@@ -13,7 +13,7 @@ void Cacher::Find_Exp_Size() {
     num_experiment = experiment_size.size();
     for (int i = 0; i < num_experiment; ++i) {
         std::ostringstream stream;
-        if(experiment_size[i] < Num_b_in_kb) {
+        if (experiment_size[i] < Num_b_in_kb) {
             stream << experiment_size[i];
             experiment_size_name.push_back(stream.str() + " kb");
         } else {
@@ -42,7 +42,9 @@ Cacher::Cacher(std::vector<Type> types) {
                 for (int j = 0; j < num_experiment; ++j) {
                     long double k = 0;
                     // Warming
-                    for (int i = 0; i < experiment_size[j]; i += Num_Data_In_Line){
+                    for (int i = 0;
+                    i < experiment_size[j];
+                    i += Num_Data_In_Line){
                         k += arr[i];
                     }
                     // Experiment
@@ -55,7 +57,7 @@ Cacher::Cacher(std::vector<Type> types) {
                     }
                     std::chrono::system_clock::time_point end =
                             std::chrono::high_resolution_clock::now();
-                    duration.at(t).push_back(static_cast<long>(std::chrono::
+                    duration.at(t).push_back(static_cast<int>(std::chrono::
                     nanoseconds((end - start)/Num_Repeat).count()));
                 }
                 break;
@@ -64,20 +66,22 @@ Cacher::Cacher(std::vector<Type> types) {
                 for (int j = 0; j < num_experiment; ++j) {
                     long double k = 0;
                     // Warming
-                    for (int i = 0; i < experiment_size[j]; i += Num_Data_In_Line){
+                    for (int i = 0;
+                    i < experiment_size[j];
+                    i += Num_Data_In_Line){
                         k += arr[i];
                     }
                     // Experiment
                     std::chrono::system_clock::time_point start =
                             std::chrono::high_resolution_clock::now();
                     for (int i = experiment_size[j] * Num_Repeat;
-                         i > 0 ;
+                         i > 0;
                          i -= Num_Data_In_Line){
                         k += arr[i % experiment_size[j]];
                     }
                     std::chrono::system_clock::time_point end =
                             std::chrono::high_resolution_clock::now();
-                    duration.at(t).push_back(static_cast<long>(std::chrono::
+                    duration.at(t).push_back(static_cast<int>(std::chrono::
                     nanoseconds((end - start)/Num_Repeat).count()));
                 }
                 break;
@@ -88,7 +92,9 @@ Cacher::Cacher(std::vector<Type> types) {
                     std::set<int> used_num;
                     int n = 0;
                     // Warming
-                    for (int i = 0; i < experiment_size[j]; i += Num_Data_In_Line){
+                    for (int i = 0;
+                    i < experiment_size[j];
+                    i += Num_Data_In_Line){
                         k += arr[i];
                     }
                     // Experiment
@@ -105,7 +111,7 @@ Cacher::Cacher(std::vector<Type> types) {
                     }
                     std::chrono::system_clock::time_point end =
                             std::chrono::high_resolution_clock::now();
-                    duration.at(t).push_back(static_cast<long>(std::chrono::
+                    duration.at(t).push_back(static_cast<int>(std::chrono::
                     nanoseconds((end - start)/Num_Repeat).count()));
                 }
                 break;
